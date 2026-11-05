@@ -5,14 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Plataforma de tendencias de mercado del jeans">
   <title>Tendencias de Mercado del Jeans</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{--navy:#14283f;--blue:#245b83;--blue-light:#eaf2f7;--ink:#1d2935;--muted:#6e7b87;--line:#e3e8ed;--bg:#f3f6f8}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--ink);background:var(--bg);font-family:'DM Sans',sans-serif}
+    .topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 7vw;background:#fff;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:11px;color:var(--navy);text-decoration:none;font-family:Manrope,sans-serif;font-size:16px;font-weight:600}
+    .brand strong{font-weight:800}.brand-mark{width:38px;height:38px;display:grid;place-items:center;color:#fff;background:var(--navy);border-radius:11px;font-size:13px;font-weight:800}
+    .top-note{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .layout{width:min(1120px,88vw);min-height:calc(100vh - 76px);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:8vw;padding:54px 0}
+    .intro{padding:20px 0}.eyebrow{margin:0 0 17px;color:var(--blue);font-size:10px;font-weight:700;letter-spacing:.17em}
+    h1,h2,h3{font-family:Manrope,sans-serif;color:var(--navy)}
+    h1{margin:0;font-size:clamp(34px,4.3vw,54px);line-height:1.13;letter-spacing:-.045em}h1 span{color:var(--blue)}
+    .intro-copy{max-width:490px;margin:22px 0 34px;color:#64717d;font-size:15px;line-height:1.8}
+    .feature-list{display:grid;gap:21px}.feature-list>div{display:flex;align-items:center;gap:15px}
+    .feature-icon{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border-radius:12px;color:var(--blue);background:var(--blue-light);font-size:12px;font-weight:700}
+    .feature-list b,.feature-list small{display:block}.feature-list b{color:var(--navy);font-size:13px}.feature-list small{margin-top:4px;color:var(--muted);font-size:12px}
+    .copyright{margin-top:54px;color:#98a2ab;font-size:11px}
+    .auth-panel{width:100%;max-width:440px;justify-self:end;padding:42px;border:1px solid #e8edf1;border-radius:20px;background:#fff;box-shadow:0 18px 55px rgba(24,48,70,.07)}
+    .panel-heading{margin-bottom:28px}.panel-heading .eyebrow{margin-bottom:9px}h2{margin:0 0 8px;font-size:27px;letter-spacing:-.035em}
+    .panel-heading>p:last-child{margin:0;color:var(--muted);font-size:13px}
+    form label,.password-label label{display:block;margin:0 0 8px;color:#344454;font-size:12px;font-weight:700}
+    input{width:100%;height:48px;margin-bottom:20px;padding:0 14px;border:1px solid #dce3e9;border-radius:9px;outline:none;color:var(--ink);background:#fff;font:inherit;font-size:13px}
+    input:focus{border-color:#5d8cac;box-shadow:0 0 0 3px rgba(65,123,160,.12)}input::placeholder{color:#a8b1b9}
+    .password-label{display:flex;align-items:center;justify-content:space-between}.password-label label{margin-bottom:8px}
+    .text-button{padding:0;border:0;color:var(--blue);background:none;cursor:pointer;font:inherit;font-size:12px;font-weight:700}
+    .text-button:hover{text-decoration:underline}
+    .primary-button,.secondary-button{width:100%;height:49px;display:flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:9px;cursor:pointer;font:inherit;font-size:13px;font-weight:700}
+    .primary-button{margin-top:3px;color:#fff;background:var(--navy)}.primary-button:hover{background:#203f5e}.primary-button:disabled{opacity:.6;cursor:wait}
+    .primary-button span{font-size:18px}.message{min-height:18px;margin:12px 0 0;color:#b13c3c;font-size:12px;line-height:1.5}
+    .message.success{color:#26734b}.auth-links{margin-top:13px;text-align:center}.auth-links>p{margin:20px 0 0;color:var(--muted);font-size:12px}
+    .auth-links>p .text-button{margin-left:3px}.secure-note{margin:27px 0 0;padding-top:17px;border-top:1px solid var(--line);color:#84919b;text-align:center;font-size:10px}
+    .secure-note span{color:#3c9a6b;margin-right:5px}
+    .user-card{display:flex;align-items:center;gap:13px;margin:24px 0 28px;padding:15px;border:1px solid var(--line);border-radius:12px}
+    .avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;color:#fff;background:var(--blue);font-weight:700}
+    .user-card b,.user-card small{display:block;overflow-wrap:anywhere}.user-card b{color:var(--navy);font-size:12px}.user-card small{margin-top:4px;color:var(--muted);font-size:11px}
+    h3{margin:0 0 8px;font-size:16px}.dashboard-copy{margin:0 0 20px;color:var(--muted);font-size:12px;line-height:1.7}
+    .module-placeholder{display:flex;align-items:center;gap:12px;margin:10px 0;padding:13px;border:1px solid var(--line);border-radius:10px}
+    .module-placeholder>span{color:var(--blue);font-size:12px;font-weight:700}.module-placeholder b,.module-placeholder small{display:block}
+    .module-placeholder b{color:var(--navy);font-size:12px}.module-placeholder small{margin-top:3px;color:var(--muted);font-size:10px}
+    .secondary-button{margin-top:22px;color:var(--navy);background:var(--blue-light)}.secondary-button:hover{background:#dceaf3}
+    [hidden]{display:none!important}
+    @media(max-width:800px){.layout{width:min(520px,90vw);grid-template-columns:1fr;gap:32px;padding:40px 0}.intro{padding:0}.intro-copy{margin:16px 0 22px}.feature-list{display:none}.copyright{margin-top:25px}.auth-panel{justify-self:center;padding:30px 25px}.topbar{padding:0 5vw}}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Inicio">
-      <span class="brand-mark">TJ</span>
-      <span>Tendencias <strong>Jeans</strong></span>
-    </a>
+    <a class="brand" href="#" aria-label="Inicio"><span class="brand-mark">TJ</span><span>Tendencias <strong>Jeans</strong></span></a>
     <span class="top-note">Observatorio de mercado</span>
   </header>
 
@@ -36,20 +76,13 @@
           <h2 id="form-title">Iniciar sesión</h2>
           <p id="form-subtitle">Ingresa tus datos para continuar.</p>
         </div>
-
         <form id="auth-form">
           <label for="email">Correo electrónico</label>
           <input id="email" type="email" autocomplete="email" placeholder="nombre@correo.com" required>
-
-          <div class="password-label">
-            <label for="password">Contraseña</label>
-            <button type="button" class="text-button" id="toggle-password">Mostrar</button>
-          </div>
+          <div class="password-label"><label for="password">Contraseña</label><button type="button" class="text-button" id="toggle-password">Mostrar</button></div>
           <input id="password" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres" minlength="6" required>
-
           <button class="primary-button" id="submit-button" type="submit">Iniciar sesión <span>→</span></button>
         </form>
-
         <p class="message" id="message" role="status" aria-live="polite"></p>
         <div class="auth-links">
           <button type="button" class="text-button" id="forgot-button">¿Olvidaste tu contraseña?</button>
@@ -59,32 +92,171 @@
       </div>
 
       <div id="app-view" hidden>
-        <div class="panel-heading">
-          <p class="eyebrow">ÁREA DE USUARIO</p>
-          <h2>¡Bienvenido!</h2>
-          <p>Has iniciado sesión correctamente.</p>
-        </div>
-        <div class="user-card">
-          <div class="avatar" id="avatar">U</div>
-          <div><b id="user-email">Usuario</b><small>Sesión activa</small></div>
-        </div>
+        <div class="panel-heading"><p class="eyebrow">ÁREA DE USUARIO</p><h2>¡Bienvenido!</h2><p>Has iniciado sesión correctamente.</p></div>
+        <div class="user-card"><div class="avatar" id="avatar">U</div><div><b id="user-email">Usuario</b><small>Sesión activa</small></div></div>
         <h3>Tu espacio de investigación</h3>
         <p class="dashboard-copy">Desde aquí podrás organizar los módulos de análisis y consulta del mercado del jeans.</p>
-        <div class="module-placeholder">
-          <span>01</span><div><b>Investigación de mercado</b><small>Próximamente</small></div>
-        </div>
-        <div class="module-placeholder">
-          <span>02</span><div><b>Análisis de clientes</b><small>Próximamente</small></div>
-        </div>
-        <div class="module-placeholder">
-          <span>03</span><div><b>Competencia y tendencias</b><small>Próximamente</small></div>
-        </div>
+        <div class="module-placeholder"><span>01</span><div><b>Investigación de mercado</b><small>Próximamente</small></div></div>
+        <div class="module-placeholder"><span>02</span><div><b>Análisis de clientes</b><small>Próximamente</small></div></div>
+        <div class="module-placeholder"><span>03</span><div><b>Competencia y tendencias</b><small>Próximamente</small></div></div>
         <button class="secondary-button" id="logout-button" type="button">Cerrar sesión</button>
         <p class="message" id="dashboard-message" role="status"></p>
       </div>
     </section>
   </main>
 
-  <script type="module" src="app.js"></script>
+  <script type="module">
+    // Firebase SDK 13.2.0: aplicación y autenticación.
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+    // Configuración del proyecto Firebase proporcionada.
+    const firebaseConfig = {
+      apiKey: "AIzaSyD-IwKAX4KgOAU5JQB4jehWitIqHPrOTI0",
+      authDomain: "proyecto-mercadeo-de-jeans.firebaseapp.com",
+      projectId: "proyecto-mercadeo-de-jeans",
+      storageBucket: "proyecto-mercadeo-de-jeans.firebasestorage.app",
+      messagingSenderId: "932242595413",
+      appId: "1:932242595413:web:8d74218f5eb130152afedc",
+      measurementId: "G-QP7RGBK3QR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Analytics es opcional; se inicia solo si el entorno lo soporta.
+    isSupported().then((supported) => {
+      if (supported) getAnalytics(app);
+    }).catch((error) => console.info("Analytics no está disponible en este entorno.", error));
+
+    const authView = document.querySelector("#auth-view");
+    const appView = document.querySelector("#app-view");
+    const form = document.querySelector("#auth-form");
+    const emailInput = document.querySelector("#email");
+    const passwordInput = document.querySelector("#password");
+    const message = document.querySelector("#message");
+    const submitButton = document.querySelector("#submit-button");
+    const formTitle = document.querySelector("#form-title");
+    const formSubtitle = document.querySelector("#form-subtitle");
+    const switchCopy = document.querySelector("#switch-copy");
+    const forgotButton = document.querySelector("#forgot-button");
+    const togglePasswordButton = document.querySelector("#toggle-password");
+    let isRegisterMode = false;
+
+    function showMessage(text, type = "error") {
+      message.textContent = text;
+      message.className = type === "success" ? "message success" : "message";
+    }
+
+    function friendlyError(error) {
+      const errors = {
+        "auth/email-already-in-use": "Este correo ya tiene una cuenta. Inicia sesión.",
+        "auth/invalid-email": "El correo electrónico no tiene un formato válido.",
+        "auth/weak-password": "La contraseña debe tener al menos 6 caracteres.",
+        "auth/invalid-credential": "Correo o contraseña incorrectos.",
+        "auth/user-disabled": "Esta cuenta está deshabilitada.",
+        "auth/too-many-requests": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+        "auth/network-request-failed": "No fue posible conectar. Revisa tu conexión a internet.",
+        "auth/operation-not-allowed": "Activa el proveedor Correo electrónico/Contraseña en Firebase Authentication."
+      };
+      return errors[error.code] || "Ocurrió un error. Verifica los datos e inténtalo nuevamente.";
+    }
+
+    function toggleMode() {
+      isRegisterMode = !isRegisterMode;
+      formTitle.textContent = isRegisterMode ? "Crear cuenta" : "Iniciar sesión";
+      formSubtitle.textContent = isRegisterMode
+        ? "Regístrate para acceder a la plataforma."
+        : "Ingresa tus datos para continuar.";
+      submitButton.innerHTML = isRegisterMode
+        ? 'Crear cuenta <span>→</span>'
+        : 'Iniciar sesión <span>→</span>';
+      switchCopy.innerHTML = isRegisterMode
+        ? '¿Ya tienes una cuenta? <button type="button" class="text-button" id="switch-mode">Iniciar sesión</button>'
+        : '¿Aún no tienes una cuenta? <button type="button" class="text-button" id="switch-mode">Crear cuenta</button>';
+      document.querySelector("#switch-mode").addEventListener("click", toggleMode);
+      passwordInput.autocomplete = isRegisterMode ? "new-password" : "current-password";
+      forgotButton.hidden = isRegisterMode;
+      showMessage("");
+    }
+
+    document.querySelector("#switch-mode").addEventListener("click", toggleMode);
+    togglePasswordButton.addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      togglePasswordButton.textContent = showing ? "Mostrar" : "Ocultar";
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      submitButton.disabled = true;
+      showMessage("");
+      try {
+        if (isRegisterMode) {
+          await createUserWithEmailAndPassword(auth, email, password);
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
+      } catch (error) {
+        showMessage(friendlyError(error));
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    forgotButton.addEventListener("click", async () => {
+      const email = emailInput.value.trim();
+      if (!email) {
+        showMessage("Escribe tu correo electrónico para enviarte el enlace de recuperación.");
+        emailInput.focus();
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Si el correo está registrado, recibirás instrucciones para restablecer tu contraseña.", "success");
+      } catch (error) {
+        showMessage(friendlyError(error));
+      }
+    });
+
+    document.querySelector("#logout-button").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        document.querySelector("#dashboard-message").textContent = friendlyError(error);
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authView.hidden = true;
+        appView.hidden = false;
+        document.querySelector("#user-email").textContent = user.email || "Usuario";
+        document.querySelector("#avatar").textContent = (user.email || "U").charAt(0).toUpperCase();
+      } else {
+        appView.hidden = true;
+        authView.hidden = false;
+        form.reset();
+        isRegisterMode = false;
+        formTitle.textContent = "Iniciar sesión";
+        formSubtitle.textContent = "Ingresa tus datos para continuar.";
+        submitButton.innerHTML = 'Iniciar sesión <span>→</span>';
+        switchCopy.innerHTML = '¿Aún no tienes una cuenta? <button type="button" class="text-button" id="switch-mode">Crear cuenta</button>';
+        document.querySelector("#switch-mode").addEventListener("click", toggleMode);
+        forgotButton.hidden = false;
+        showMessage("");
+      }
+    });
+  </script>
 </body>
 </html>
